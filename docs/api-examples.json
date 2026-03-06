@@ -1,0 +1,97 @@
+[
+    {
+        "_comment": "Signup API request and response example",
+        "request": {
+            "method": "POST",
+            "endpoint": "/user/signup",
+            "body": {
+                "username": "demoUser",
+                "fullname": "demo User",
+                "email": "demouser@gmail.com",
+                "password": "demoUserPassword",
+                "confirmPassword": "demoUserPassword"
+            }
+        },
+        "response": {
+            "data": {
+                "username": "demoUser",
+                "fullname": "demo User",
+                "email": "demouser@gmail.com",
+                "password": "demoUserPassword",
+                "isActive": true,
+                "articles": [],
+                "_id": "69ab30cb82bd591e87f3bf10",
+                "__v": 0
+            },
+            "message": "New user created successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Login API request and response example",
+        "request": {
+            "method": "POST",
+            "endpoint": "/user/login",
+            "body": {
+                "username": "demoUser",
+                "password": "demoUserPassword"
+            }
+        },
+        "response": {
+            "data": {
+                "_id": "69ab30cb82bd591e87f3bf10",
+                "username": "demoUser",
+                "fullname": "demo User",
+                "email": "demouser@gmail.com",
+                "password": "demoUserPassword",
+                "isActive": true,
+                "articles": [],
+                "__v": 0
+            },
+            "message": "User logged-in successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Find User API request and response example",
+        "request": {
+            "method": "GET",
+            "endpoint": "/user/:userId"
+        },
+        "response": {
+            "data": {
+                "_id": "69ab30cb82bd591e87f3bf10",
+                "username": "demoUser",
+                "fullname": "demo User",
+                "email": "demouser@gmail.com",
+                "password": "demoUserPassword",
+                "isActive": true,
+                "articles": [],
+                "__v": 0
+            },
+            "message": "User found successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Destroy User API request and response example",
+        "request": {
+            "method": "DELETE",
+            "endpoint": "/user/:userId"
+        },
+        "response": {
+            "data": {
+                "_id": "69ab30cb82bd591e87f3bf10",
+                "username": "demoUser",
+                "fullname": "demo User",
+                "email": "demouser@gmail.com",
+                "password": "demoUserPassword",
+                "isActive": true,
+                "articles": [],
+                "__v": 0
+            },
+            "message": "User data deleted successfully.",
+            "success": true
+        }
+    }
+]
