@@ -1,10 +1,8 @@
 import mongoose from "mongoose";
 
-const db_url =  process.env.DATABASE_URL ||"mongodb://127.0.0.1:27017/test";
-
-export async function connectDB() {
+export async function connectDB(database_url) {
     try {
-        await mongoose.connect(db_url);
+        await mongoose.connect(database_url);
         console.log("Connected to crud-test DB");
     } catch (err) {
         console.error("DB connection error:", err);

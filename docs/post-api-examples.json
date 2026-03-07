@@ -1,0 +1,94 @@
+[
+    {
+        "_comment": "Create New Post API request and response example",
+        "request": {
+            "method": "POST",
+            "endpoint": "/user/post/:userId/new-post",
+            "body": {
+                "title": "demoTitle",
+                "description": "demoDescription"
+            }
+        },
+        "response": {
+            "data": {
+                "title": "demoTitle",
+                "description": "demoDescription",
+                "author": "69abb915853c7208691741c4",
+                "createdAt": "2026-03-07T05:34:52.239Z",
+                "_id": "69abba2c853c7208691741d0",
+                "likes": 602,
+                "comments": 22,
+                "__v": 0
+            },
+            "message": "New article created successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Get Post API request and response example",
+        "request": {
+            "method": "GET",
+            "endpoint": "/user/post/:userId/:postId/get-post"
+        },
+        "response": {
+            "data": {
+                "_id": "69abba2c853c7208691741d0",
+                "title": "demoTitle",
+                "description": "demoDescription",
+                "author": "69abb915853c7208691741c4",
+                "createdAt": "2026-03-07T05:34:52.239Z",
+                "likes": 602,
+                "comments": 22,
+                "__v": 0
+            },
+            "message": "Post article found successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Update Post API request and response example",
+        "request": {
+            "method": "POST",
+            "endpoint": "/user/post/:userId/edit-post",
+            "body": {
+                "title": "updatedDemoTitle",
+                "description": "updatedDemoDescription"
+            }
+        },
+        "response": {
+            "data": {
+                "_id": "69abba2c853c7208691741d0",
+                "title": "updatedDemoTitle",
+                "description": "updatedDemoDescription",
+                "author": "69abb915853c7208691741c4",
+                "createdAt": "2026-03-07T05:34:52.239Z",
+                "likes": 602,
+                "comments": 22,
+                "__v": 0
+            },
+            "message": "Post article edited successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Delete Post API request and response example",
+        "request": {
+            "method": "DELETE",
+            "endpoint": "/user/post/:userId/:postId/delete-post"
+        },
+        "response": {
+            "data": {
+                "_id": "69abba2c853c7208691741d0",
+                "title": "updatedDemoTitle",
+                "description": "updatedDemoDescription",
+                "author": "69abb915853c7208691741c4",
+                "createdAt": "2026-03-07T05:34:52.239Z",
+                "likes": 602,
+                "comments": 22,
+                "__v": 0
+            },
+            "message": "Article deleted successfully.",
+            "success": true
+        }
+    }
+]
