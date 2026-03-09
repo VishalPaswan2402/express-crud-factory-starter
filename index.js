@@ -5,18 +5,28 @@ import UserModel from "./models/userModel.js";
 import PostModel from "./models/postModel.js";
 import { jsonValidate } from "./middlewares/jsonValidate.js";
 import { connectDB } from "./utils/connectDb.js";
-dotenv.config();
 
+const app = express();
+dotenv.config();
 const port = process.env.PORT || 8080;
 const database_url = process.env.DATABASE_URL || "mongodb://127.0.0.1:27017/testApi";
 
-const app = express();
 app.use(express.json());
 app.use(jsonValidate);
 connectDB(database_url);
 
-const userAPI = loginSignupFactory(UserModel);
-const postAPI = postArticleFactory(UserModel, PostModel);
+const secretsConfig = {
+    jwtSecret: {
+        secretKey: process.env.JWT_SECRET || "Your_Secret_Key_For_Jwt",
+        expireIn: "1d"
+    },
+    bcryptSecret: {
+        saltRounds: 10
+    }
+};
+
+const userAPI = loginSignupFactory(UserModel, secretsConfig);
+const postAPI = postArticleFactory(UserModel, PostModel, secretsConfig);
 
 app.use("/user", userAPI);
 app.use("/user/post", postAPI);

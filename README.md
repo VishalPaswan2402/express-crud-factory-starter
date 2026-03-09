@@ -53,9 +53,6 @@ This allows you to **practice real production-like API workflows**.
 
 ```
 express-crud-factory-starter 
-├── docs
-│ 	└── post-api-examples.json
-│ 	└── user-api-examples.json
 │
 ├── middlewares
 │ 	└── jsonValidate.js
@@ -94,10 +91,11 @@ npm install
 
 Create a `.env` file in the root directory.
 ```
-# Replace the following with your own port and MongoDB URL if needed
+# Replace the following with your own port and MongoDB URL and jwt-secret-key if needed
 
-PORT=3000
-DATABASE_URL="mongodb://127.0.0.1:27017/demoSetup"
+PORT=YOUR_PORT_NUMBER
+DATABASE_URL="YOUR_MONGODB_DATABASE_URL"
+JWT_SECRET="YOUR_JWT_SECRET_KEY"
 ```
 **Run the Server**
 ```
