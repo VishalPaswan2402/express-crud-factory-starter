@@ -2,7 +2,7 @@
 
 # Express CRUD Factory Starter
 
-[![Npm Pa](https://img.shields.io/badge/NPM-Package-blue)](https://www.npmjs.com/package/express-crud-factory) [![Npm Pa](https://img.shields.io/badge/NPM-Package%20Repo.-blue)](https://github.com/VishalPaswan2402/express-crud-factory) [![Project Downloads](https://img.shields.io/npm/dt/express-crud-factory?label=Project%20Setup%20Repo.)](https://github.com/VishalPaswan2402/express-crud-factory-starter) [![Contributors](https://img.shields.io/badge/Contributors-1-orange)](https://github.com/VishalPaswan2402)
+[![Npm Pa](https://img.shields.io/badge/NPM-Package-blue)](https://www.npmjs.com/package/express-crud-factory) [![Npm Pa](https://img.shields.io/badge/GitHub-Package%20Repo.-blue)](https://github.com/VishalPaswan2402/express-crud-factory) [![Project Downloads](https://img.shields.io/npm/dt/express-crud-factory?label=Project%20Setup%20Repo.)](https://github.com/VishalPaswan2402/express-crud-factory-starter) [![Contributors](https://img.shields.io/badge/Contributors-1-orange)](https://github.com/VishalPaswan2402)
 
 
 
@@ -54,15 +54,9 @@ This allows you to **practice real production-like API workflows**.
 ```
 express-crud-factory-starter 
 │
-├── middlewares
-│ 	└── jsonValidate.js
-│
 ├── models
 │ 	└── postModel.js
-│ 	└── userModel.js
-│  
-├── utils
-│ 	└── connectDB.js  
+│ 	└── userModel.js 
 │  
 ├── .env
 ├── .gitignore 
@@ -85,6 +79,7 @@ cd express-crud-factory-starter
 Install dependencies
 ```
 npm install
+npm install express-crud-factory
 ```
 
 **Environment Variables**
@@ -105,6 +100,11 @@ Server will start at :
 ```
 http://localhost:8080
 ```
+On successfull run, you will see this on terminal :
+```
+Server is running on port 8080
+MongoDB connected successfully
+```
 
 ## API Endpoints
 ```
@@ -117,8 +117,12 @@ DELETE Request : /user/:userId
 # Post Articles API Endpoints
 POST Request : /user/post/:userId/new-post
 GET Request : /user/post/:userId/:postId/get-post
-PUT Request : /user/post/:userId/:postId/edit-post
+PATCH Request : /user/post/:userId/:postId/edit-post
 DELETE Request : /user/post/:userId/:postId/delete-post
+GET Request : /user/post/:postId/share-post
+PATCH Request : /user/post/:userId/:postId/pin-post
+GET Request : /user/post/:userId/all-post
+PATCH Request : /user/post/:userId/:postId/trash-post
 ```
 
 ## Projects You Can Build
@@ -148,6 +152,8 @@ This repository and package is helpful for:
 ## License
 
 This project is licensed under the ISC License.  
+
+[https://express-crud-factory-license.onrender.com/](https://express-crud-factory-license.onrender.com/)
   
 Copyright (c) 2026 Vishal Paswan
 

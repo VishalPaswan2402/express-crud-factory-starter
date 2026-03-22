@@ -4,6 +4,9 @@
         "request": {
             "method": "POST",
             "endpoint": "/user/post/:userId/new-post",
+            "headers": {
+                "Authorization": "Bearer <your_jwt_token>"
+            },
             "body": {
                 "title": "demoTitle",
                 "description": "demoDescription"
@@ -11,13 +14,17 @@
         },
         "response": {
             "data": {
-                "title": "demoTitle",
-                "description": "demoDescription",
-                "author": "69abb915853c7208691741c4",
-                "createdAt": "2026-03-07T05:34:52.239Z",
-                "_id": "69abba2c853c7208691741d0",
-                "likes": 602,
-                "comments": 22,
+                "title": "title",
+                "description": "descr",
+                "author": "69c02e4ec3c2644bd6d4c5a4",
+                "isPinned": false,
+                "isTrashed": false,
+                "deletedAt": null,
+                "_id": "69c02f29782a204f3e64c103",
+                "likes": 858,
+                "comments": 16,
+                "createdAt": "2026-03-22T18:04:25.166Z",
+                "updatedAt": "2026-03-22T18:04:25.166Z",
                 "__v": 0
             },
             "message": "New article created successfully.",
@@ -28,17 +35,24 @@
         "_comment": "Get Post API request and response example",
         "request": {
             "method": "GET",
-            "endpoint": "/user/post/:userId/:postId/get-post"
+            "endpoint": "/user/post/:userId/:postId/get-post",
+            "headers": {
+                "Authorization": "Bearer <your_jwt_token>"
+            }
         },
         "response": {
             "data": {
-                "_id": "69abba2c853c7208691741d0",
-                "title": "demoTitle",
-                "description": "demoDescription",
-                "author": "69abb915853c7208691741c4",
-                "createdAt": "2026-03-07T05:34:52.239Z",
-                "likes": 602,
-                "comments": 22,
+                "_id": "69c02f29782a204f3e64c103",
+                "title": "title",
+                "description": "descr",
+                "author": "69c02e4ec3c2644bd6d4c5a4",
+                "isPinned": false,
+                "isTrashed": false,
+                "deletedAt": null,
+                "likes": 858,
+                "comments": 16,
+                "createdAt": "2026-03-22T18:04:25.166Z",
+                "updatedAt": "2026-03-22T18:07:53.901Z",
                 "__v": 0
             },
             "message": "Post article found successfully.",
@@ -48,22 +62,29 @@
     {
         "_comment": "Update Post API request and response example",
         "request": {
-            "method": "POST",
-            "endpoint": "/user/post/:userId/edit-post",
+            "method": "PATCH",
+            "endpoint": "/user/post/:userId/:postId/edit-post",
+            "headers": {
+                "Authorization": "Bearer <your_jwt_token>"
+            },
             "body": {
-                "title": "updatedDemoTitle",
+                "title": "newTitle",
                 "description": "updatedDemoDescription"
             }
         },
         "response": {
             "data": {
-                "_id": "69abba2c853c7208691741d0",
-                "title": "updatedDemoTitle",
-                "description": "updatedDemoDescription",
-                "author": "69abb915853c7208691741c4",
-                "createdAt": "2026-03-07T05:34:52.239Z",
-                "likes": 602,
-                "comments": 22,
+                "_id": "69c02f29782a204f3e64c103",
+                "title": "newTitle",
+                "description": "descr",
+                "author": "69c02e4ec3c2644bd6d4c5a4",
+                "isPinned": false,
+                "isTrashed": false,
+                "deletedAt": null,
+                "likes": 858,
+                "comments": 16,
+                "createdAt": "2026-03-22T18:04:25.166Z",
+                "updatedAt": "2026-03-22T18:07:53.901Z",
                 "__v": 0
             },
             "message": "Post article edited successfully.",
@@ -71,23 +92,139 @@
         }
     },
     {
-        "_comment": "Delete Post API request and response example",
+        "_comment": "Trash Post API request and response example",
         "request": {
-            "method": "DELETE",
-            "endpoint": "/user/post/:userId/:postId/delete-post"
+            "method": "PATCH",
+            "endpoint": "/user/post/:userId/:postId/trash-post",
+            "headers": {
+                "Authorization": "Bearer <your_jwt_token>"
+            }
         },
         "response": {
             "data": {
-                "_id": "69abba2c853c7208691741d0",
-                "title": "updatedDemoTitle",
-                "description": "updatedDemoDescription",
-                "author": "69abb915853c7208691741c4",
-                "createdAt": "2026-03-07T05:34:52.239Z",
-                "likes": 602,
-                "comments": 22,
+                "_id": "69c02f29782a204f3e64c103",
+                "title": "newTitle",
+                "description": "descr",
+                "author": "69c02e4ec3c2644bd6d4c5a4",
+                "isPinned": true,
+                "isTrashed": true,
+                "deletedAt": "2026-03-22T18:25:29.889Z",
+                "likes": 858,
+                "comments": 16,
+                "createdAt": "2026-03-22T18:04:25.166Z",
+                "updatedAt": "2026-03-22T18:25:29.893Z",
+                "__v": 0
+            },
+            "message": "Post article moved to trash file.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Delete Post API request and response example",
+        "request": {
+            "method": "DELETE",
+            "endpoint": "/user/post/:userId/:postId/delete-post",
+            "headers": {
+                "Authorization": "Bearer <your_jwt_token>"
+            }
+        },
+        "response": {
+            "data": {
+                "_id": "69c02f29782a204f3e64c103",
+                "title": "newTitle",
+                "description": "descr",
+                "author": "69c02e4ec3c2644bd6d4c5a4",
+                "isPinned": true,
+                "isTrashed": true,
+                "deletedAt": "2026-03-22T18:25:29.889Z",
+                "likes": 858,
+                "comments": 16,
+                "createdAt": "2026-03-22T18:04:25.166Z",
+                "updatedAt": "2026-03-22T18:25:29.893Z",
                 "__v": 0
             },
             "message": "Article deleted successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "View Shared Post API request and response example",
+        "request": {
+            "method": "GET",
+            "endpoint": "/user/post/:postId/share-post"
+        },
+        "response": {
+            "data": {
+                "_id": "69c02f29782a204f3e64c103",
+                "title": "newTitle",
+                "description": "descr",
+                "author": "69c02e4ec3c2644bd6d4c5a4",
+                "isPinned": false,
+                "isTrashed": false,
+                "deletedAt": null,
+                "likes": 858,
+                "comments": 16,
+                "createdAt": "2026-03-22T18:04:25.166Z",
+                "updatedAt": "2026-03-22T18:07:53.901Z",
+                "__v": 0
+            },
+            "message": "Post article found successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Pin Post API request and response example",
+        "request": {
+            "method": "PATCH",
+            "endpoint": "/user/post/:userId/:postId/pin-post",
+            "headers": {
+                "Authorization": "Bearer <your_jwt_token>"
+            }
+        },
+        "response": {
+            "data": {
+                "_id": "69c02f29782a204f3e64c103",
+                "title": "newTitle",
+                "description": "descr",
+                "author": "69c02e4ec3c2644bd6d4c5a4",
+                "isPinned": true,
+                "isTrashed": false,
+                "deletedAt": null,
+                "likes": 858,
+                "comments": 16,
+                "createdAt": "2026-03-22T18:04:25.166Z",
+                "updatedAt": "2026-03-22T18:20:00.187Z",
+                "__v": 0
+            },
+            "message": "Post article marked as important.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "All Post API request and response example",
+        "request": {
+            "method": "GET",
+            "endpoint": "/user/post/:userId/all-post",
+            "headers": {
+                "Authorization": "Bearer <your_jwt_token>"
+            }
+        },
+        "response": {
+            "data": {
+                "_id": "69c02f29782a204f3e64c103",
+                "title": "newTitle",
+                "description": "descr",
+                "author": "69c02e4ec3c2644bd6d4c5a4",
+                "isPinned": true,
+                "isTrashed": false,
+                "deletedAt": null,
+                "likes": 858,
+                "comments": 16,
+                "createdAt": "2026-03-22T18:04:25.166Z",
+                "updatedAt": "2026-03-22T18:20:00.187Z",
+                "__v": 0
+            },
+            "message": "All post article found successfully.",
             "success": true
         }
     }
