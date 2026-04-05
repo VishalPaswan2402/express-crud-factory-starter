@@ -1,6 +1,6 @@
 [
     {
-        "_comment": "Signup API request and response example",
+        "_comment": "Signup API request and response example.",
         "request": {
             "method": "POST",
             "endpoint": "/user/signup",
@@ -14,58 +14,117 @@
         },
         "response": {
             "data": {
-                "username": "demoUser",
-                "fullname": "demo User",
-                "email": "demouser@gmail.com",
-                "password": "demoUserPassword",
-                "isActive": true,
-                "articles": [],
-                "_id": "69ab30cb82bd591e87f3bf10",
-                "__v": 0
+                "userId": "69d22b315f516294e74c20c9",
+                "fullName": "user1",
+                "email": "user1@gmail.com"
             },
-            "message": "New user created successfully.",
+            "message": "Verification link/OTP sended to your email successfully.",
             "success": true
         }
     },
     {
-        "_comment": "Login API request and response example",
+        "_comment": "Verify email with link on signup API request and response example.",
+        "request": {
+            "method": "GET",
+            "endpoint": "/user/signup/verify-email?token=TOKEN_IN_EMAIL"
+        },
+        "response": {
+            "data": {
+                "_id": "69d22b315f516294e74c20c9",
+                "username": "user1",
+                "fullname": "user1",
+                "email": "user1@gmail.com",
+                "isActive": true,
+                "emailVerified": true,
+                "articles": [],
+                "__v": 0
+            },
+            "token": "eyJXVCJ9.eyJp4Mn0.5fJkiN8",
+            "message": "Email verified and account created successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Verify email with OTP on signup API request and response example.",
+        "request": {
+            "method": "POST",
+            "endpoint": "/user/signup/:userId/verify-email"
+        },
+        "response": {
+            "data": {
+                "_id": "69d22e5b309c21a627e916fb",
+                "username": "user1",
+                "fullname": "user1",
+                "email": "user1@gmail.com",
+                "isActive": true,
+                "emailVerified": true,
+                "articles": [],
+                "__v": 0
+            },
+            "token": "eyJhVCJ9.jo3NTM41Nn0.9eV0brJXWUI",
+            "message": "Email verified and account created successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Login API request and response example.",
         "request": {
             "method": "POST",
             "endpoint": "/user/login",
             "body": {
-                "username": "demoUser",
-                "password": "demoUserPassword"
+                "username": "user1",
+                "password": "user1"
             }
         },
         "response": {
             "data": {
-                "_id": "69ab30cb82bd591e87f3bf10",
-                "username": "demoUser",
-                "fullname": "demo User",
-                "email": "demouser@gmail.com",
-                "password": "demoUserPassword",
+                "_id": "69d22b315f516294e74c20c9",
+                "username": "user1",
+                "fullname": "user1",
+                "email": "user1@gmail.com",
                 "isActive": true,
+                "emailVerified": true,
                 "articles": [],
                 "__v": 0
             },
+            "token": "eyJhbGVCJ9.eZXJuYI6MTc3NTM4NTMwMH0.up2W6jEhZy4",
             "message": "User logged-in successfully.",
             "success": true
         }
     },
     {
-        "_comment": "Find User API request and response example",
+        "_comment": "Send email API request and response example.",
         "request": {
-            "method": "GET",
-            "endpoint": "/user/:userId"
+            "method": "POST",
+            "endpoint": "/user/signup/:userId/send-email"
         },
         "response": {
             "data": {
-                "_id": "69ab30cb82bd591e87f3bf10",
-                "username": "demoUser",
-                "fullname": "demo User",
-                "email": "demouser@gmail.com",
-                "password": "demoUserPassword",
+                "userId": "69d22d32e6ccf93e9dc2b6f6",
+                "fullName": "user1",
+                "email": "user1@gmail.com"
+            },
+            "message": "Verification link/OTP sended to your email successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Find User API request and response example.",
+        "request": {
+            "method": "GET",
+            "endpoint": "/user/:userId",
+            "headers": {
+                "Authorization": "Bearer <your_jwt_token>"
+            }
+        },
+        "response": {
+            "data": {
+                "_id": "69d22e5b309c21a627e916fb",
+                "username": "user1",
+                "fullname": "user1",
+                "email": "user1@gmail.com",
                 "isActive": true,
+                "emailVerified": true,
                 "articles": [],
                 "__v": 0
             },
@@ -74,21 +133,56 @@
         }
     },
     {
-        "_comment": "Destroy User API request and response example",
+        "_comment": "Send email for destroy user API request and response example.",
         "request": {
-            "method": "DELETE",
-            "endpoint": "/user/:userId"
+            "method": "POST",
+            "endpoint": "/user/destroy/:userId/send-email",
+            "headers": {
+                "Authorization": "Bearer <your_jwt_token>"
+            }
         },
         "response": {
             "data": {
-                "_id": "69ab30cb82bd591e87f3bf10",
-                "username": "demoUser",
-                "fullname": "demo User",
-                "email": "demouser@gmail.com",
-                "password": "demoUserPassword",
-                "isActive": true,
-                "articles": [],
-                "__v": 0
+                "userId": "69d22e5b309c21a627e916fb",
+                "fullName": "user1",
+                "email": "user1@gmail.com"
+            },
+            "message": "Verification link/OTP sended to your email successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Destroy user by OTP API request and response example.",
+        "request": {
+            "method": "POST",
+            "endpoint": "/user/destroy/:userId/verify-email",
+            "headers": {
+                "Authorization": "Bearer <your_jwt_token>"
+            }
+        },
+        "response": {
+            "data": {
+                "userId": "69d22e5b309c21a627e916fb",
+                "username": "user1",
+                "fullname": "user1",
+                "email": "user1@gmail.com"
+            },
+            "message": "User data deleted successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Destroy user by link OTP API request and response example.",
+        "request": {
+            "method": "DELETE",
+            "endpoint": "/user/destroy/:userId/verify-email?token=TOKEN_IN_EMAIL"
+        },
+        "response": {
+            "data": {
+                "userId": "69d23257544f87270102b04a",
+                "username": "user1",
+                "fullname": "user1",
+                "email": "user1@gmail.com"
             },
             "message": "User data deleted successfully.",
             "success": true

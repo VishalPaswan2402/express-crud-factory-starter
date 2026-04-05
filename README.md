@@ -55,52 +55,59 @@ This allows you to **practice real production-like API workflows**.
 express-crud-factory-starter 
 │
 ├── models
-│ 	└── postModel.js
-│ 	└── userModel.js 
+│ 	└── post.model.js
+│ 	└── user.model.js 
 │  
 ├── .env
 ├── .gitignore 
 ├── index.js
 ├── package-lock.json
-├── package.json  
-└── README.md
+└── package.json 
 ```
 
 ## Installation
 
-Clone the repository  
+Clone the repository. 
 ```
 git clone https://github.com/VishalPaswan2402/express-crud-factory-starter.git  
 ```
-Go to the project folder 
+Go to the project folder.
 ```
 cd express-crud-factory-starter
 ```
-Install dependencies
+Install dependencies.
 ```
-npm install
-npm install express-crud-factory
+npm install express dotenv cors mongoose bcrypt jsonwebtoken nodemailer
+npm install express-crud-factory@latest
 ```
 
-**Environment Variables**
-
-Create a `.env` file in the root directory.
+For environment Variables, create a `.env` file in the root directory.
 ```
 # Replace the following with your own port and MongoDB URL and jwt-secret-key if needed
 
+PROJECT_NAME="YOUR_PROJECT_NAME"
 PORT=YOUR_PORT_NUMBER
 DATABASE_URL="YOUR_MONGODB_DATABASE_URL"
 JWT_SECRET="YOUR_JWT_SECRET_KEY"
+FRONTEND_BASE_URL="YOUR_FRONTEND_BASE_URL"
+EMAIL_USERNAME="YOUR_EMAIL_USERNAME"
+EMAIL_PASSWORD="YOUR_EMAIL_PASSWORD"
 ```
-**Run the Server**
+
+For privacy and security, create `.gitignore` file in root directory if not present.
+```
+# Don't forget to add this :
+
+node_modules
+.env
+```
+
+Start your Server.
 ```
 node index.js
 ```
-Server will start at :
-```
-http://localhost:8080
-```
-On successfull run, you will see this on terminal :
+
+On successfull run, you will see this on terminal.
 ```
 Server is running on port 8080
 MongoDB connected successfully
@@ -109,21 +116,31 @@ MongoDB connected successfully
 ## API Endpoints
 ```
 # User API Endpoints
-POST Request : /user/signup
-GET Request : /user/:userId
-POST Request : /user/login
-DELETE Request : /user/:userId
+
+POST Request     :   /user/signup
+POST Request     :   /user/login
+GET Request      :   /user/signup/verify-email
+POST Request     :   /user/signup/:userId/send-email
+POST Request     :   /user/destroy/:userId/send-email
+POST Request     :   /user/signup/:userId/verify-email
+GET Request      :   /user/:userId
+POST Request     :   /user/destroy/:userId/verify-email
+DELETE Request   :   /user/destroy/:userId/verify-email
+
 
 # Post Articles API Endpoints
-POST Request : /user/post/:userId/new-post
-GET Request : /user/post/:userId/:postId/get-post
-PATCH Request : /user/post/:userId/:postId/edit-post
-DELETE Request : /user/post/:userId/:postId/delete-post
-GET Request : /user/post/:postId/share-post
-PATCH Request : /user/post/:userId/:postId/pin-post
-GET Request : /user/post/:userId/all-post
-PATCH Request : /user/post/:userId/:postId/trash-post
+
+POST Request     :   /user/post/:userId/new-post
+GET Request      :   /user/post/:userId/:postId/get-post
+GET Request      :   /user/post/:userId/all-post
+GET Request      :   /user/post/:postId/share-post
+PATCH Request    :   /user/post/:userId/:postId/edit-post
+PATCH Request    :   /user/post/:userId/:postId/pin-post
+PATCH Request    :   /user/post/:userId/:postId/trash-post
+DELETE Request   :   /user/post/:userId/:postId/delete-post
 ```
+
+Visit [https://github.com/VishalPaswan2402/express-crud-factory-starter/tree/main/docs](https://github.com/VishalPaswan2402/express-crud-factory-starter/tree/main/docs) for detailed API request / response samples and use-cases.
 
 ## Projects You Can Build
 
