@@ -1,110 +1,27 @@
 [
     {
-        "_comment": "Signup API request and response example.",
-        "request": {
-            "method": "POST",
-            "endpoint": "/user/signup",
-            "body": {
-                "username": "demoUser",
-                "fullname": "demo User",
-                "email": "demouser@gmail.com",
-                "password": "demoUserPassword",
-                "confirmPassword": "demoUserPassword"
-            }
-        },
-        "response": {
-            "data": {
-                "userId": "69d22b315f516294e74c20c9",
-                "fullName": "user1",
-                "email": "user1@gmail.com"
-            },
-            "message": "Verification link/OTP sended to your email successfully.",
-            "success": true
-        }
-    },
-    {
-        "_comment": "Verify email with link on signup API request and response example.",
-        "request": {
-            "method": "GET",
-            "endpoint": "/user/signup/verify-email?token=TOKEN_IN_EMAIL"
-        },
-        "response": {
-            "data": {
-                "_id": "69d22b315f516294e74c20c9",
-                "username": "user1",
-                "fullname": "user1",
-                "email": "user1@gmail.com",
-                "isActive": true,
-                "emailVerified": true,
-                "articles": [],
-                "__v": 0
-            },
-            "token": "eyJXVCJ9.eyJp4Mn0.5fJkiN8",
-            "message": "Email verified and account created successfully.",
-            "success": true
-        }
-    },
-    {
-        "_comment": "Verify email with OTP on signup API request and response example.",
-        "request": {
-            "method": "POST",
-            "endpoint": "/user/signup/:userId/verify-email"
-        },
-        "response": {
-            "data": {
-                "_id": "69d22e5b309c21a627e916fb",
-                "username": "user1",
-                "fullname": "user1",
-                "email": "user1@gmail.com",
-                "isActive": true,
-                "emailVerified": true,
-                "articles": [],
-                "__v": 0
-            },
-            "token": "eyJhVCJ9.jo3NTM41Nn0.9eV0brJXWUI",
-            "message": "Email verified and account created successfully.",
-            "success": true
-        }
-    },
-    {
         "_comment": "Login API request and response example.",
         "request": {
             "method": "POST",
             "endpoint": "/user/login",
             "body": {
                 "username": "user1",
-                "password": "user1"
+                "password": "password"
             }
         },
         "response": {
             "data": {
-                "_id": "69d22b315f516294e74c20c9",
+                "_id": "userId",
                 "username": "user1",
                 "fullname": "user1",
                 "email": "user1@gmail.com",
                 "isActive": true,
                 "emailVerified": true,
-                "articles": [],
+                "articles": 0,
                 "__v": 0
             },
             "token": "eyJhbGVCJ9.eZXJuYI6MTc3NTM4NTMwMH0.up2W6jEhZy4",
-            "message": "User logged-in successfully.",
-            "success": true
-        }
-    },
-    {
-        "_comment": "Send email API request and response example.",
-        "request": {
-            "method": "POST",
-            "endpoint": "/user/signup/:userId/send-email"
-        },
-        "response": {
-            "data": {
-                "userId": "69d22d32e6ccf93e9dc2b6f6",
-                "fullName": "user1",
-                "email": "user1@gmail.com"
-            },
-            "message": "Verification link/OTP sended to your email successfully.",
+            "message": "User logged in successfully.",
             "success": true
         }
     },
@@ -119,16 +36,102 @@
         },
         "response": {
             "data": {
-                "_id": "69d22e5b309c21a627e916fb",
+                "_id": "userId",
                 "username": "user1",
                 "fullname": "user1",
                 "email": "user1@gmail.com",
                 "isActive": true,
                 "emailVerified": true,
-                "articles": [],
+                "articles": 0,
                 "__v": 0
             },
-            "message": "User found successfully.",
+            "message": "User retrieved successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Signup API request and response example.",
+        "request": {
+            "method": "POST",
+            "endpoint": "/user/signup",
+            "body": {
+                "username": "demoUser",
+                "fullname": "demo User",
+                "email": "demouser@gmail.com",
+                "password": "demoUserPassword",
+                "confirmPassword": "demoUserPassword"
+            }
+        },
+        "response": {
+            "data": {
+                "userId": "userId",
+                "fullName": "user1",
+                "email": "user1@gmail.com"
+            },
+            "message": "Verification link/OTP sent to your email successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Verify email with link on signup API request and response example.",
+        "request": {
+            "method": "GET",
+            "endpoint": "/user/signup/:userId/verify-email?token=TOKEN_IN_EMAIL"
+        },
+        "response": {
+            "data": {
+                "_id": "userId",
+                "username": "user1",
+                "fullname": "user1",
+                "email": "user1@gmail.com",
+                "isActive": true,
+                "emailVerified": true,
+                "articles": 0,
+                "__v": 0
+            },
+            "token": "eyJXVCJ9.eyJp4Mn0.5fJkiN8",
+            "message": "Account created and email verified successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Send signup email API request and response example.",
+        "request": {
+            "method": "POST",
+            "endpoint": "/user/signup/:userId/send-email"
+        },
+        "response": {
+            "data": {
+                "userId": "userId",
+                "fullName": "user1",
+                "email": "user1@gmail.com"
+            },
+            "message": "Verification link/OTP sent to your email successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Verify email with OTP on signup API request and response example.",
+        "request": {
+            "method": "POST",
+            "endpoint": "/user/signup/:userId/verify-email",
+            "body": {
+                "otp": "your_otp"
+            }
+        },
+        "response": {
+            "data": {
+                "_id": "userId",
+                "username": "user1",
+                "fullname": "user1",
+                "email": "user1@gmail.com",
+                "isActive": true,
+                "emailVerified": true,
+                "articles": 0,
+                "__v": 0
+            },
+            "token": "eyJhVCJ9.jo3NTM41Nn0.9eV0brJXWUI",
+            "message": "Account created and email verified successfully.",
             "success": true
         }
     },
@@ -143,11 +146,11 @@
         },
         "response": {
             "data": {
-                "userId": "69d22e5b309c21a627e916fb",
+                "userId": "userId",
                 "fullName": "user1",
                 "email": "user1@gmail.com"
             },
-            "message": "Verification link/OTP sended to your email successfully.",
+            "message": "Verification link/OTP sent to your email successfully.",
             "success": true
         }
     },
@@ -156,18 +159,21 @@
         "request": {
             "method": "POST",
             "endpoint": "/user/destroy/:userId/verify-email",
+            "body": {
+                "otp": "your_otp"
+            },
             "headers": {
                 "Authorization": "Bearer <your_jwt_token>"
             }
         },
         "response": {
             "data": {
-                "userId": "69d22e5b309c21a627e916fb",
+                "userId": "userId",
                 "username": "user1",
                 "fullname": "user1",
                 "email": "user1@gmail.com"
             },
-            "message": "User data deleted successfully.",
+            "message": "User deleted successfully.",
             "success": true
         }
     },
@@ -179,12 +185,98 @@
         },
         "response": {
             "data": {
-                "userId": "69d23257544f87270102b04a",
+                "userId": "userId",
                 "username": "user1",
                 "fullname": "user1",
                 "email": "user1@gmail.com"
             },
-            "message": "User data deleted successfully.",
+            "message": "User deleted successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Forgot password request and response example.",
+        "request": {
+            "method": "POST",
+            "endpoint": "/user/recover-password",
+            "body": {
+                "usernameOrEmail": "user1"
+            }
+        },
+        "response": {
+            "data": {
+                "userId": "userId",
+                "fullName": "user1",
+                "email": "user1@gmail.com"
+            },
+            "message": "Verification link/OTP sent to your email successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Send recover password email API request and response example.",
+        "request": {
+            "method": "POST",
+            "endpoint": "/user/recover/:userId/send-email"
+        },
+        "response": {
+            "data": {
+                "userId": "userId",
+                "fullName": "user1",
+                "email": "user1@gmail.com"
+            },
+            "message": "Verification link sent to your email successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Verify email with link on recover password API request and response example.",
+        "request": {
+            "method": "GET",
+            "endpoint": "/user/recover/:userId/verify-email?token=TOKEN_IN_EMAIL",
+            "body": {
+                "password": "your_new_password",
+                "confirmPassword": "your_new_password"
+            }
+        },
+        "response": {
+            "data": {
+                "_id": "userId",
+                "username": "user1",
+                "fullname": "user1",
+                "email": "user1@gmail.com",
+                "isActive": true,
+                "emailVerified": true,
+                "articles": 0,
+                "__v": 0
+            },
+            "message": "Password updated successfully.",
+            "success": true
+        }
+    },
+    {
+        "_comment": "Verify email with OTP on recover password API request and response example.",
+        "request": {
+            "method": "POST",
+            "endpoint": "/user/recover/:userId/otp/verify-email",
+            "body": {
+                "otp": "your_otp",
+                "password": "your_new_password",
+                "confirmPassword": "your_new_password"
+            }
+        },
+        "response": {
+            "data": {
+                "_id": "userId",
+                "username": "user1",
+                "fullname": "user1",
+                "email": "user1@gmail.com",
+                "isActive": true,
+                "emailVerified": true,
+                "articles": 0,
+                "__v": 0
+            },
+            "message": "Password updated successfully.",
             "success": true
         }
     }

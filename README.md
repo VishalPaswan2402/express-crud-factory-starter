@@ -21,7 +21,7 @@ Many frontend developers struggle to practice API integration because they don't
 
 **Express-Crud-Factory solves this problem.**
 
-It provides a **simple backend API system** that you can connect with:
+It provides a **simple and secure backend API system** that you can connect with:
 
 -   React
     
@@ -35,19 +35,57 @@ This allows you to **practice real production-like API workflows**.
 
 ## Features
 
--   Ready-to-use Express server
-    
--   CRUD API using **express-crud-factory**
+- #### Plug & Play Backend
+  - Ready-to-use Express CRUD APIs
+  - Minimal setup required
+  - Perfect for frontend developers
 
--   MongoDB integration with Mongoose
-    
--   Error handling middleware
-    
--   Clean and scalable project structure
-    
--   Environment variable configuration
-    
--   Beginner friendly setup
+- #### Authentication Made Simple
+  - Signup & Login APIs
+  - JWT-based authentication
+  - Easy integration with frontend apps
+
+- #### Email Verification (2 Methods)
+  - OTP-based verification
+  - Email link verification
+  - Choose what fits your project
+
+- #### Resend Verification Support
+  - Resend OTP or email verification link
+  - Smooth user onboarding experience
+
+- #### Forgot Password Flow
+  - Reset password using OTP or email link
+  - Secure and beginner-friendly implementation
+
+- #### User CRUD APIs
+  - Create, read, update, delete users
+  - Ready for direct frontend consumption
+
+- #### Post / Article CRUD APIs
+  - Full CRUD support for posts/articles
+  - Great for blogs or content apps
+
+- #### Pagination Support
+  - Fetch data with page & limit
+  - Optimized for large datasets
+
+- #### Built-in Validations
+  - Email format validation
+  - Strong password rules
+  - Clean error responses for frontend handling
+
+- #### Factory Pattern Architecture
+  - Reusable controllers
+  - Easily extend to new models
+
+- #### Frontend-Friendly Responses
+  - Consistent API response structure
+  - Easy to handle in React, Vue, etc.
+
+- #### Built for Learning
+  - Understand real-world backend flows
+  - Great for practice projects & portfolio
 
 ## Project Structure
 
@@ -117,15 +155,19 @@ MongoDB connected successfully
 ```
 # User API Endpoints
 
-POST Request     :   /user/signup
 POST Request     :   /user/login
-GET Request      :   /user/signup/verify-email
-POST Request     :   /user/signup/:userId/send-email
-POST Request     :   /user/destroy/:userId/send-email
-POST Request     :   /user/signup/:userId/verify-email
 GET Request      :   /user/:userId
+POST Request     :   /user/signup
+GET Request      :   /user/signup/:userId/verify-email
+POST Request     :   /user/signup/:userId/send-email
+POST Request     :   /user/signup/:userId/verify-email
+POST Request     :   /user/destroy/:userId/send-email
 POST Request     :   /user/destroy/:userId/verify-email
 DELETE Request   :   /user/destroy/:userId/verify-email
+POST Request     :   /user/recover-password
+POST Request     :   /user/recover/:userId/send-email
+POST Request     :   /user/recover/:userId/verify-email
+POST Request     :   /user/recover/:userId/otp/verify-email
 
 
 # Post Articles API Endpoints
@@ -138,6 +180,7 @@ PATCH Request    :   /user/post/:userId/:postId/edit-post
 PATCH Request    :   /user/post/:userId/:postId/pin-post
 PATCH Request    :   /user/post/:userId/:postId/trash-post
 DELETE Request   :   /user/post/:userId/:postId/delete-post
+GET Request      :   /user/post/:userId/search
 ```
 
 Visit [https://github.com/VishalPaswan2402/express-crud-factory-starter/tree/main/docs](https://github.com/VishalPaswan2402/express-crud-factory-starter/tree/main/docs) for detailed API request / response samples and use-cases.
