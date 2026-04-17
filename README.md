@@ -116,26 +116,25 @@ cd express-crud-factory-starter
 Install dependencies.
 ```
 npm install express dotenv cors mongoose bcrypt jsonwebtoken nodemailer
-npm install express-crud-factory@latest
+npm install express-crud-factory
 ```
 
 For environment Variables, create a `.env` file in the root directory.
 ```
-# Replace the following with your own port and MongoDB URL and jwt-secret-key if needed
+# Replace the following with your own values
 
 PROJECT_NAME="YOUR_PROJECT_NAME"
 PORT=YOUR_PORT_NUMBER
 DATABASE_URL="YOUR_MONGODB_DATABASE_URL"
-JWT_SECRET="YOUR_JWT_SECRET_KEY"
+JWT_SECRET_KEY="YOUR_JWT_SECRET_KEY"
 FRONTEND_BASE_URL="YOUR_FRONTEND_BASE_URL"
 EMAIL_USERNAME="YOUR_EMAIL_USERNAME"
 EMAIL_PASSWORD="YOUR_EMAIL_PASSWORD"
+VERIFY_SECRET_KEY="YOUR_VERIFY_SECRET_KEY"
 ```
 
 For privacy and security, create `.gitignore` file in root directory if not present.
 ```
-# Don't forget to add this :
-
 node_modules
 .env
 ```
@@ -152,35 +151,40 @@ MongoDB connected successfully
 ```
 
 ## API Endpoints
+
+#### User API Endpoints :
+
+This section outlines all available User API endpoints used for authentication, account management, email verification, OTP handling, account deletion, and password recovery. These endpoints follow RESTful principles and support key user workflows such as signup, login, email verification, account destruction, and recovery, ensuring secure and structured interaction between the client and server.
 ```
-# User API Endpoints
-
-POST Request     :   /user/login
-GET Request      :   /user/:userId
 POST Request     :   /user/signup
-GET Request      :   /user/signup/:userId/verify-email
-POST Request     :   /user/signup/:userId/send-email
-POST Request     :   /user/signup/:userId/verify-email
-POST Request     :   /user/destroy/:userId/send-email
-POST Request     :   /user/destroy/:userId/verify-email
-DELETE Request   :   /user/destroy/:userId/verify-email
-POST Request     :   /user/recover-password
-POST Request     :   /user/recover/:userId/send-email
-POST Request     :   /user/recover/:userId/verify-email
-POST Request     :   /user/recover/:userId/otp/verify-email
+POST Request     :   /user/signup/send-verification
+POST Request     :   /user/signup/link/verify-email
+POST Request     :   /user/signup/otp/verify-email
+POST Request     :   /user/login
+GET Request      :   /user/:userId/profile
+POST Request     :   /user/:userId/delete-account/send-verification
+POST Request     :   /user/delete-account/link/verify-email
+POST Request     :   /user/:userId/delete-account/otp/verify-email
+POST Request     :   /user/forgot-password
+POST Request     :   /user/forgot-password/send-verification
+POST Request     :   /user/reset-password/link/verify-email
+POST Request     :   /user/reset-password/otp/verify-email
+```
 
+#### Post Articles API Endpoints :
 
-# Post Articles API Endpoints
+This section defines all Post Articles API endpoints used for creating, retrieving, updating, searching, and deleting user posts. It includes features like post creation, editing, pinning, trashing, sharing, and fetching posts (single or multiple), along with pagination support for efficiently handling large datasets, while maintaining proper user-based access control.
 
+```
 POST Request     :   /user/post/:userId/new-post
 GET Request      :   /user/post/:userId/:postId/get-post
-GET Request      :   /user/post/:userId/all-post
-GET Request      :   /user/post/:postId/share-post
+GET Request      :   /user/post/:userId/all-post?page=1&limit=10
+GET Request      :   /user/post/:postId/view/shared-post
 PATCH Request    :   /user/post/:userId/:postId/edit-post
 PATCH Request    :   /user/post/:userId/:postId/pin-post
 PATCH Request    :   /user/post/:userId/:postId/trash-post
 DELETE Request   :   /user/post/:userId/:postId/delete-post
-GET Request      :   /user/post/:userId/search
+GET Request      :   /user/post/:userId/search?text=title&page=1&limit=10
 ```
 
 Visit [https://github.com/VishalPaswan2402/express-crud-factory-starter/tree/main/docs](https://github.com/VishalPaswan2402/express-crud-factory-starter/tree/main/docs) for detailed API request / response samples and use-cases.
@@ -211,7 +215,7 @@ This repository and package is helpful for:
 
 ## License
 
-This project is licensed under the ISC License.  
+This project is licensed under the MIT License.  
 
 [https://express-crud-factory-license.onrender.com/](https://express-crud-factory-license.onrender.com/)
   

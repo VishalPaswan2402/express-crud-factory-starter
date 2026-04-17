@@ -6,12 +6,12 @@
             "endpoint": "/user/login",
             "body": {
                 "username": "user1",
-                "password": "password"
+                "password": "UserPassword"
             }
         },
         "response": {
             "data": {
-                "_id": "userId",
+                "_id": "69dcadc6ad8dd69df57ab4c5",
                 "username": "user1",
                 "fullname": "user1",
                 "email": "user1@gmail.com",
@@ -20,7 +20,7 @@
                 "articles": 0,
                 "__v": 0
             },
-            "token": "eyJhbGVCJ9.eZXJuYI6MTc3NTM4NTMwMH0.up2W6jEhZy4",
+            "token": "jwt_token",
             "message": "User logged in successfully.",
             "success": true
         }
@@ -29,21 +29,20 @@
         "_comment": "Find User API request and response example.",
         "request": {
             "method": "GET",
-            "endpoint": "/user/:userId",
+            "endpoint": "/user/:userId/profile",
             "headers": {
                 "Authorization": "Bearer <your_jwt_token>"
             }
         },
         "response": {
             "data": {
-                "_id": "userId",
+                "_id": "69dcadc6ad8dd69df57ab4c5",
                 "username": "user1",
                 "fullname": "user1",
                 "email": "user1@gmail.com",
-                "isActive": true,
+                "active": true,
                 "emailVerified": true,
-                "articles": 0,
-                "__v": 0
+                "totalArticles": 0
             },
             "message": "User retrieved successfully.",
             "success": true
@@ -55,32 +54,34 @@
             "method": "POST",
             "endpoint": "/user/signup",
             "body": {
-                "username": "demoUser",
-                "fullname": "demo User",
-                "email": "demouser@gmail.com",
-                "password": "demoUserPassword",
-                "confirmPassword": "demoUserPassword"
+                "username": "user1",
+                "fullname": "user1",
+                "email": "user1@gmail.com",
+                "password": "UserPassword",
+                "confirmPassword": "UserPassword"
             }
         },
         "response": {
             "data": {
-                "userId": "userId",
                 "fullName": "user1",
                 "email": "user1@gmail.com"
             },
-            "message": "Verification link/OTP sent to your email successfully.",
+            "message": "Verification link sent to your email successfully.",
             "success": true
         }
     },
     {
         "_comment": "Verify email with link on signup API request and response example.",
         "request": {
-            "method": "GET",
-            "endpoint": "/user/signup/:userId/verify-email?token=TOKEN_IN_EMAIL"
+            "method": "POST",
+            "endpoint": "/user/signup/link/verify-email",
+            "body": {
+                "token": "signup_email_token"
+            }
         },
         "response": {
             "data": {
-                "_id": "userId",
+                "_id": "69dcadc6ad8dd69df57ab4c5",
                 "username": "user1",
                 "fullname": "user1",
                 "email": "user1@gmail.com",
@@ -89,24 +90,25 @@
                 "articles": 0,
                 "__v": 0
             },
-            "token": "eyJXVCJ9.eyJp4Mn0.5fJkiN8",
             "message": "Account created and email verified successfully.",
             "success": true
         }
     },
     {
-        "_comment": "Send signup email API request and response example.",
+        "_comment": "Re-send signup email API request and response example.",
         "request": {
             "method": "POST",
-            "endpoint": "/user/signup/:userId/send-email"
+            "endpoint": "/user/signup/send-verification",
+            "body": {
+                "email": "user1@gmail.com"
+            }
         },
         "response": {
             "data": {
-                "userId": "userId",
                 "fullName": "user1",
                 "email": "user1@gmail.com"
             },
-            "message": "Verification link/OTP sent to your email successfully.",
+            "message": "Verification link sent to your email successfully.",
             "success": true
         }
     },
@@ -114,14 +116,15 @@
         "_comment": "Verify email with OTP on signup API request and response example.",
         "request": {
             "method": "POST",
-            "endpoint": "/user/signup/:userId/verify-email",
+            "endpoint": "/user/signup/otp/verify-email",
             "body": {
-                "otp": "your_otp"
+                "otp": "your_otp",
+                "email": "user1@gmail.com"
             }
         },
         "response": {
             "data": {
-                "_id": "userId",
+                "_id": "69dcc26beca6bd38235ce059",
                 "username": "user1",
                 "fullname": "user1",
                 "email": "user1@gmail.com",
@@ -130,7 +133,7 @@
                 "articles": 0,
                 "__v": 0
             },
-            "token": "eyJhVCJ9.jo3NTM41Nn0.9eV0brJXWUI",
+            "token": "jwt_token",
             "message": "Account created and email verified successfully.",
             "success": true
         }
@@ -139,18 +142,20 @@
         "_comment": "Send email for destroy user API request and response example.",
         "request": {
             "method": "POST",
-            "endpoint": "/user/destroy/:userId/send-email",
+            "endpoint": "/user/:userId/delete-account/send-verification",
+            "body": {
+                "email": "user1@gmail.com"
+            },
             "headers": {
                 "Authorization": "Bearer <your_jwt_token>"
             }
         },
         "response": {
             "data": {
-                "userId": "userId",
                 "fullName": "user1",
                 "email": "user1@gmail.com"
             },
-            "message": "Verification link/OTP sent to your email successfully.",
+            "message": "Verification link sent to your email successfully.",
             "success": true
         }
     },
@@ -158,9 +163,10 @@
         "_comment": "Destroy user by OTP API request and response example.",
         "request": {
             "method": "POST",
-            "endpoint": "/user/destroy/:userId/verify-email",
+            "endpoint": "/user/:userId/delete-account/otp/verify-email",
             "body": {
-                "otp": "your_otp"
+                "otp": "your_otp",
+                "email": "user1@gmail.com"
             },
             "headers": {
                 "Authorization": "Bearer <your_jwt_token>"
@@ -168,7 +174,6 @@
         },
         "response": {
             "data": {
-                "userId": "userId",
                 "username": "user1",
                 "fullname": "user1",
                 "email": "user1@gmail.com"
@@ -178,14 +183,16 @@
         }
     },
     {
-        "_comment": "Destroy user by link OTP API request and response example.",
+        "_comment": "Destroy user by link API request and response example.",
         "request": {
-            "method": "DELETE",
-            "endpoint": "/user/destroy/:userId/verify-email?token=TOKEN_IN_EMAIL"
+            "method": "POST",
+            "endpoint": "/user/delete-account/link/verify-email",
+            "body": {
+                "token": "delete_user_email_token"
+            }
         },
         "response": {
             "data": {
-                "userId": "userId",
                 "username": "user1",
                 "fullname": "user1",
                 "email": "user1@gmail.com"
@@ -198,30 +205,13 @@
         "_comment": "Forgot password request and response example.",
         "request": {
             "method": "POST",
-            "endpoint": "/user/recover-password",
+            "endpoint": "/user/forgot-password",
             "body": {
                 "usernameOrEmail": "user1"
             }
         },
         "response": {
             "data": {
-                "userId": "userId",
-                "fullName": "user1",
-                "email": "user1@gmail.com"
-            },
-            "message": "Verification link/OTP sent to your email successfully.",
-            "success": true
-        }
-    },
-    {
-        "_comment": "Send recover password email API request and response example.",
-        "request": {
-            "method": "POST",
-            "endpoint": "/user/recover/:userId/send-email"
-        },
-        "response": {
-            "data": {
-                "userId": "userId",
                 "fullName": "user1",
                 "email": "user1@gmail.com"
             },
@@ -230,25 +220,38 @@
         }
     },
     {
+        "_comment": "Re-send recover password email API request and response example.",
+        "request": {
+            "method": "POST",
+            "endpoint": "/user/forgot-password/send-verification",
+            "body": {
+                "email": "user1@gmail.com"
+            }
+        },
+        "response": {
+            "data": {
+                "fullName": "user1",
+                "email": "user1@gmail.com"
+            },
+            "message": "Verification OTP sent to your email successfully.",
+            "success": true
+        }
+    },
+    {
         "_comment": "Verify email with link on recover password API request and response example.",
         "request": {
-            "method": "GET",
-            "endpoint": "/user/recover/:userId/verify-email?token=TOKEN_IN_EMAIL",
+            "method": "POST",
+            "endpoint": "/user/reset-password/link/verify-email",
             "body": {
+                "token": "recover_password_email_token",
                 "password": "your_new_password",
                 "confirmPassword": "your_new_password"
             }
         },
         "response": {
             "data": {
-                "_id": "userId",
-                "username": "user1",
-                "fullname": "user1",
-                "email": "user1@gmail.com",
-                "isActive": true,
-                "emailVerified": true,
-                "articles": 0,
-                "__v": 0
+                "fullName": "user1",
+                "email": "user1@gmail.com"
             },
             "message": "Password updated successfully.",
             "success": true
@@ -261,20 +264,15 @@
             "endpoint": "/user/recover/:userId/otp/verify-email",
             "body": {
                 "otp": "your_otp",
+                "email": "user1@gmail.com",
                 "password": "your_new_password",
                 "confirmPassword": "your_new_password"
             }
         },
         "response": {
             "data": {
-                "_id": "userId",
-                "username": "user1",
-                "fullname": "user1",
-                "email": "user1@gmail.com",
-                "isActive": true,
-                "emailVerified": true,
-                "articles": 0,
-                "__v": 0
+                "fullName": "user1",
+                "email": "user1@gmail.com"
             },
             "message": "Password updated successfully.",
             "success": true

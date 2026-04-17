@@ -15,13 +15,13 @@ const database_url = process.env.DATABASE_URL || "mongodb://127.0.0.1:27017/expr
 app.use(cors({ origin: frontend_base_url }));
 app.use(express.json());
 app.use(jsonErrorHandler);
-connectDatabase(database_url);
+await connectDatabase(database_url);
 
 // jwt secret and hashing configuration
 const secretsConfig = {
     jwtSecret: {
-        secretKey: process.env.JWT_SECRET || "1jsd23owie45xnzbm67pqlmx89", // your secret key for jwt signature
-        expireIn: "1h"  // token expire in hour
+        secretKey: process.env.JWT_SECRET_KEY || "a-string-secret-at-least-256-bits-long", // secret key for jwt signature
+        expireInDays: 1  // token expire in days
     },
     bcryptSecret: {
         saltRounds: 10 // hashing salt round
@@ -32,16 +32,17 @@ const secretsConfig = {
 const emailConfig = {
     mailProvider: {
         host: "smtp.ethereal.email", // your email host provider
-        secure: false, // true in production
-        username: process.env.EMAIL_USERNAME || "rosalyn.bayer@ethereal.email", // your email username
-        password: process.env.EMAIL_PASSWORD || "Fr5x7UAbMscAfcNRb9" // your email password
+        secure: false, // assign true value in production
+        username: process.env.EMAIL_USERNAME || "your_email_username", // your email username
+        password: process.env.EMAIL_PASSWORD || "your_email_password" // your email password
     },
     verifyMethod: {
         projectName: process.env.PROJECT_NAME || "Express-Crud-Factory", // your project name
         otpLinkExpiryMinutes: 2, // otp expires in minutes
-        unverifiedUserExpiryDays: 1, // user destroyed if email not verified in days
-        usingLink: true, // true -> link verification method , false -> OTP verification method
-        frontendBaseUrl: frontend_base_url // use if usinglink = true , else optional
+        unverifiedUserExpiryDays: 1, // user deleted if email is not verified in days
+        usingLink: true, // true -> link verification method and false -> OTP verification method
+        verifySecretKey: process.env.VERIFY_SECRET_KEY || "a-string-secret-at-least-256-bits-long", // ( use if usingLink = true else optional) secret key for email signature
+        frontendBaseUrl: frontend_base_url // ( use if usinglink = true  else optional)
     }
 }
 

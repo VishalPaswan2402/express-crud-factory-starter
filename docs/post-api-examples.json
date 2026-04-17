@@ -98,7 +98,7 @@
         "_comment": "Share post API request and response example",
         "request": {
             "method": "GET",
-            "endpoint": "/user/post/:postId/share-post"
+            "endpoint": "/user/post/:postId/view/shared-post"
         },
         "response": {
             "data": {
@@ -128,15 +128,15 @@
                 "Authorization": "Bearer <your_jwt_token>"
             },
             "body": {
-                "title": "updatedTitle3.1.1",
-                "description": "updatedDescription3.1.1"
+                "title": "updatedTitle",
+                "description": "updatedDescription"
             }
         },
         "response": {
             "data": {
                 "_id": "postId",
-                "title": "updatedTitle3.1.1",
-                "description": "updatedDescription3.1.1",
+                "title": "updatedTitle",
+                "description": "updatedDescription",
                 "author": "userId",
                 "isPinned": false,
                 "isTrashed": false,
@@ -163,8 +163,8 @@
         "response": {
             "data": {
                 "_id": "postId",
-                "title": "updatedTitle3.1.1",
-                "description": "updatedDescription3.1.1",
+                "title": "updatedTitle",
+                "description": "updatedDescription",
                 "author": "userId",
                 "isPinned": true,
                 "isTrashed": false,
@@ -191,8 +191,8 @@
         "response": {
             "data": {
                 "_id": "postId",
-                "title": "updatedTitle3.1.1",
-                "description": "updatedDescription3.1.1",
+                "title": "updatedTitle",
+                "description": "updatedDescription",
                 "author": "userId",
                 "isPinned": false,
                 "isTrashed": true,
@@ -226,7 +226,7 @@
         "_comment": "Search Post API request and response example",
         "request": {
             "method": "GET",
-            "endpoint": "/user/post/:userId/search?search=title&page=1&limit=10",
+            "endpoint": "/user/post/:userId/search?text=title&page=1&limit=10",
             "headers": {
                 "Authorization": "Bearer <your_jwt_token>"
             }
