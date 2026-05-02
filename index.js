@@ -31,7 +31,7 @@ const secretsConfig = {
 // email and verify method configuration
 const emailConfig = {
     mailProvider: {
-        host: "smtp.ethereal.email", // your email host provider
+        host: process.env.EMAIL_HOST || "your_email_host", // your email host provider
         secure: false, // assign true value in production
         username: process.env.EMAIL_USERNAME || "your_email_username", // your email username
         password: process.env.EMAIL_PASSWORD || "your_email_password" // your email password
@@ -41,12 +41,11 @@ const emailConfig = {
         otpLinkExpiryMinutes: 2, // otp expires in minutes
         unverifiedUserExpiryDays: 1, // user deleted if email is not verified in days
         usingLink: true, // true -> link verification method and false -> OTP verification method
-        verifySecretKey: process.env.VERIFY_SECRET_KEY || "a-string-secret-at-least-256-bits-long", // ( use if usingLink = true else optional) secret key for email signature
         frontendBaseUrl: frontend_base_url // ( use if usinglink = true  else optional)
     }
 }
 
-const userAPI = loginSignupFactory(UserModel, secretsConfig, emailConfig);
+const userAPI = loginSignupFactory(UserModel, PostModel, secretsConfig, emailConfig);
 const postAPI = postArticleFactory(UserModel, PostModel, secretsConfig);
 
 app.use("/user", userAPI);

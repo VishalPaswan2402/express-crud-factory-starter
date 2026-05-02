@@ -128,6 +128,7 @@ PORT=YOUR_PORT_NUMBER
 DATABASE_URL="YOUR_MONGODB_DATABASE_URL"
 JWT_SECRET_KEY="YOUR_JWT_SECRET_KEY"
 FRONTEND_BASE_URL="YOUR_FRONTEND_BASE_URL"
+EMAIL_HOST=""YOUR_EMAIL_HOST_PROVIDER
 EMAIL_USERNAME="YOUR_EMAIL_USERNAME"
 EMAIL_PASSWORD="YOUR_EMAIL_PASSWORD"
 VERIFY_SECRET_KEY="YOUR_VERIFY_SECRET_KEY"
@@ -150,6 +151,46 @@ Server is running on port 8080
 MongoDB connected successfully
 ```
 
+## Email Testing (Using Ethereal) :
+This project uses Ethereal Email for testing email functionality during development.
+
+Ethereal is a fake SMTP service — it allows you to send emails without actually delivering them to real users.
+
+### Follow these Steps to Use :
+Go to [https://ethereal.email/](https://ethereal.email/)
+
+Click on "Create Ethereal Account"
+
+You will get account credentials like :
+
+```
+Name: your_test_name
+Username: your_test_email@ethereal.email
+Password: yourtest__password
+```
+### Configure these values in index.js file :
+
+```
+mailProvider: {
+    host: "smtp.ethereal.email",
+    secure: false,
+    username: "your_test_email@ethereal.email",
+    password: "yourtest__password"
+}
+```
+
+### Viewing Sent Emails :
+After setup click on "Open Mailbox" to to see the emails.
+
+After sending open that mail to see OTP and links for verification.
+
+### Note :
+Emails are not sent to real users.
+
+Accounts are temporary.
+
+Only for development/testing purposes.
+
 ## API Endpoints
 
 #### User API Endpoints :
@@ -161,7 +202,7 @@ POST Request     :   /user/signup/send-verification
 POST Request     :   /user/signup/link/verify-email
 POST Request     :   /user/signup/otp/verify-email
 POST Request     :   /user/login
-GET Request      :   /user/:userId/profile
+GET  Request     :   /user/:userId/profile
 POST Request     :   /user/:userId/delete-account/send-verification
 POST Request     :   /user/delete-account/link/verify-email
 POST Request     :   /user/:userId/delete-account/otp/verify-email

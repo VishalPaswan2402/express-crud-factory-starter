@@ -31,6 +31,8 @@
             "success": true
         }
     },
+
+
     {
         "_comment": "Get post by id API request and response example",
         "request": {
@@ -59,6 +61,8 @@
             "success": true
         }
     },
+
+
     {
         "_comment": "Get all post API request and response example",
         "request": {
@@ -94,6 +98,8 @@
             "success": true
         }
     },
+
+
     {
         "_comment": "Share post API request and response example",
         "request": {
@@ -119,6 +125,8 @@
             "success": true
         }
     },
+
+
     {
         "_comment": "Edit post API request and response example",
         "request": {
@@ -151,6 +159,8 @@
             "success": true
         }
     },
+
+
     {
         "_comment": "Pin post API request and response example",
         "request": {
@@ -179,6 +189,8 @@
             "success": true
         }
     },
+
+
     {
         "_comment": "Trash post API request and response example",
         "request": {
@@ -207,6 +219,8 @@
             "success": true
         }
     },
+
+
     {
         "_comment": "Delete Post API request and response example",
         "request": {
@@ -222,6 +236,8 @@
             "success": true
         }
     },
+
+
     {
         "_comment": "Search Post API request and response example",
         "request": {
@@ -257,4 +273,5 @@
             "success": true
         }
     }
+
 ]
