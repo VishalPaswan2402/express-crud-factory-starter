@@ -8,7 +8,7 @@ import cors from "cors";
 const app = express();
 dotenv.config();
 
-const backend_port = process.env.PORT || 8080;
+const backend_port = parseInt(process.env.PORT) || 8080;
 const frontend_base_url = process.env.FRONTEND_BASE_URL || `http://localhost:${backend_port}`;
 const database_url = process.env.DATABASE_URL || "mongodb://127.0.0.1:27017/expressDatabase";
 
@@ -32,8 +32,9 @@ const secretsConfig = {
 const emailConfig = {
     mailProvider: {
         host: process.env.EMAIL_HOST || "your_email_host", // your email host provider
+        port: parseInt(process.env.EMAIL_PORT) || "your_email_port_number", // your email port number
         secure: false, // assign true value in production
-        username: process.env.EMAIL_USERNAME || "your_email_username", // your email username
+        username: process.env.EMAIL_USERNAME || "your_email", // your email username
         password: process.env.EMAIL_PASSWORD || "your_email_password" // your email password
     },
     verifyMethod: {
@@ -45,7 +46,8 @@ const emailConfig = {
     }
 }
 
-const userAPI = loginSignupFactory(UserModel, PostModel, secretsConfig, emailConfig);
+const loginSignupConfig = { secretsConfig, emailConfig };
+const userAPI = loginSignupFactory(UserModel, PostModel, loginSignupConfig);
 const postAPI = postArticleFactory(UserModel, PostModel, secretsConfig);
 
 app.use("/user", userAPI);

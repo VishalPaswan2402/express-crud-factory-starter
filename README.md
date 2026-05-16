@@ -123,15 +123,15 @@ For environment Variables, create a `.env` file in the root directory.
 ```
 # Replace the following with your own values
 
-PROJECT_NAME="YOUR_PROJECT_NAME"
+PROJECT_NAME=YOUR_PROJECT_NAME
 PORT=YOUR_PORT_NUMBER
-DATABASE_URL="YOUR_MONGODB_DATABASE_URL"
-JWT_SECRET_KEY="YOUR_JWT_SECRET_KEY"
-FRONTEND_BASE_URL="YOUR_FRONTEND_BASE_URL"
-EMAIL_HOST=""YOUR_EMAIL_HOST_PROVIDER
-EMAIL_USERNAME="YOUR_EMAIL_USERNAME"
-EMAIL_PASSWORD="YOUR_EMAIL_PASSWORD"
-VERIFY_SECRET_KEY="YOUR_VERIFY_SECRET_KEY"
+DATABASE_URL=YOUR_MONGODB_DATABASE_URL
+JWT_SECRET_KEY=YOUR_JWT_SECRET_KEY
+FRONTEND_BASE_URL=YOUR_FRONTEND_BASE_URL
+EMAIL_HOST=YOUR_EMAIL_HOST_PROVIDER
+EMAIL_PORT=YOUR_EMAIL_PORT_NUMBER
+EMAIL_USERNAME=YOUR_EMAIL_USERNAME
+EMAIL_PASSWORD=YOUR_EMAIL_PASSWORD
 ```
 
 For privacy and security, create `.gitignore` file in root directory if not present.
@@ -166,16 +166,17 @@ You will get account credentials like :
 ```
 Name: your_test_name
 Username: your_test_email@ethereal.email
-Password: yourtest__password
+Password: your_test_password
 ```
 ### Configure these values in index.js file :
 
 ```
 mailProvider: {
     host: "smtp.ethereal.email",
+    port: 587,
     secure: false,
     username: "your_test_email@ethereal.email",
-    password: "yourtest__password"
+    password: "your_test_password"
 }
 ```
 
@@ -268,10 +269,13 @@ Copyright (c) 2026 Vishal Paswan
 **Vishal Paswan**
 Web Developer  
 Passionate about building interactive and practical developer tools.
-[https://github.com/VishalPaswan2402](https://github.com/VishalPaswan2402)
 
 ## Support
 
-⭐ If this project helps you, consider giving it a star on [Express-Crud-Factory ](https://github.com/VishalPaswan2402/express-crud-factory) and [Express-Crud-Factory-Starter](https://github.com/VishalPaswan2402/express-crud-factory-starter)
+If you find this package helpful, consider following me on :
+
+- GitHub : [https://github.com/VishalPaswan2402](https://github.com/VishalPaswan2402)
+- LinkedIn : [https://www.linkedin.com/in/vishal-paswan-59772925b/](https://www.linkedin.com/in/vishal-paswan-59772925b/)
+- Twitter/X : [https://x.com/VishalPaswan24](https://x.com/VishalPaswan24)
 
 Your support helps improve the project and motivates further development.
